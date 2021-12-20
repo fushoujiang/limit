@@ -10,7 +10,13 @@ import org.redisson.api.RedissonClient;
 public class RedisRateLimiterFactory extends AbsRateLimiterFactory {
 
     public static final String PREFIX = "rateLimiter:";
-    RedissonClient redissonClient;
+    private RedissonClient redissonClient;
+    private RateLimiterConfig localRateLimiterConfig;
+
+    public RedisRateLimiterFactory(RedissonClient redissonClient, RateLimiterConfig localRateLimiterConfig) {
+        this.redissonClient = redissonClient;
+        this.localRateLimiterConfig = localRateLimiterConfig;
+    }
 
     public RedisRateLimiterFactory(RedissonClient redissonClient) {
         this.redissonClient = redissonClient;
