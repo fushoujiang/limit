@@ -2,8 +2,7 @@ package com.fushoujiang.limit.entity;
 
 
 
-import com.fushoujiang.limit.RateLimitAnnotation;
-
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class RateLimiterConfig {
@@ -54,6 +53,20 @@ public class RateLimiterConfig {
      */
     private String failBackMethod;
 
+    /**
+     * 是否是集群模式
+     */
+    private boolean cluster;
+
+
+    public boolean isCluster() {
+        return cluster;
+    }
+
+    public RateLimiterConfig setCluster(boolean cluster) {
+        this.cluster = cluster;
+        return this;
+    }
 
     public String getProject() {
         return project;
@@ -119,30 +132,19 @@ public class RateLimiterConfig {
     }
 
 
-    public static RateLimiterConfig rateLimitAnnotation2RateLimiterConfDTO(RateLimitAnnotation rateLimitAnnotation) {
-        return new RateLimiterConfig().setTimeOutUnit(rateLimitAnnotation.timeOutUnit())
-                .setTimeOut(rateLimitAnnotation.timeOut())
-                .setGroup(rateLimitAnnotation.group())
-                .setPerSecond(rateLimitAnnotation.perSecond())
-                .setWait(rateLimitAnnotation.isWait())
-                .setFailBackMethod(rateLimitAnnotation.failBackMethod())
-                .setProject(rateLimitAnnotation.project());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         RateLimiterConfig that = (RateLimiterConfig) o;
-
         if (wait != that.wait) return false;
         if (perSecond != that.perSecond) return false;
         if (timeOut != that.timeOut) return false;
-        if (project != null ? !project.equals(that.project) : that.project != null) return false;
-        if (group != null ? !group.equals(that.group) : that.group != null) return false;
+        if (!Objects.equals(project, that.project)) return false;
+        if (!Objects.equals(group, that.group)) return false;
         if (timeOutUnit != that.timeOutUnit) return false;
-        return failBackMethod != null ? failBackMethod.equals(that.failBackMethod) : that.failBackMethod == null;
+        if (cluster != that.cluster) return false;
+        return Objects.equals(failBackMethod, that.failBackMethod);
     }
 
     @Override

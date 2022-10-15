@@ -1,11 +1,11 @@
 package com.fushoujiang.limit.factory;
 
-
 import com.fushoujiang.limit.entity.RateLimiterConfig;
-import com.fushoujiang.limit.entity.WrapConfLimiterEntity;
+import com.fushoujiang.limit.limiter.DRateLimiter;
+
 
 public interface RateLimiterFactory {
 
-    WrapConfLimiterEntity getWrapConfLimiter(final RateLimiterConfig rateLimiterConfig);
+    DRateLimiter getRateLimiter(final RateLimiterConfig rateLimiterConfig);
 
 }

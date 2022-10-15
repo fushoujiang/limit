@@ -1,14 +1,14 @@
 package com.fushoujiang.limit.entity;
 
 
-import com.google.common.util.concurrent.RateLimiter;
+import com.fushoujiang.limit.limiter.DRateLimiter;
 
 public class WrapConfLimiterEntity {
 
     private RateLimiterConfig rateLimiterConfig;
-    private RateLimiter rateLimiter;
+    private DRateLimiter rateLimiter;
 
-    public WrapConfLimiterEntity(RateLimiterConfig rateLimiterConfig, RateLimiter rateLimiter) {
+    public WrapConfLimiterEntity(RateLimiterConfig rateLimiterConfig, DRateLimiter rateLimiter) {
         this.rateLimiterConfig = rateLimiterConfig;
         this.rateLimiter = rateLimiter;
     }
@@ -22,12 +22,11 @@ public class WrapConfLimiterEntity {
         return this;
     }
 
-    public RateLimiter getRateLimiter() {
+    public DRateLimiter getRateLimiter() {
         return rateLimiter;
     }
 
-    public WrapConfLimiterEntity setRateLimiter(RateLimiter rateLimiter) {
+    public void setRateLimiter(DRateLimiter rateLimiter) {
         this.rateLimiter = rateLimiter;
-        return this;
     }
 }
