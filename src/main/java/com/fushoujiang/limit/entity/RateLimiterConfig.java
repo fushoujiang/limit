@@ -13,7 +13,7 @@ public class RateLimiterConfig {
      */
     private String project;
     /**
-     * 限流的分组
+     * 限流的分组，最小因子
      *
      * @return
      */
