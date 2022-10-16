@@ -10,20 +10,12 @@ import com.fushoujiang.limit.entity.RateLimiterConfig;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import jdk.internal.joptsimple.internal.Strings;
 
-import java.util.Properties;
-import java.util.concurrent.*;
 
 public class ApolloConfigManager extends AbsConfigManager {
 
 
-    private static final int POOL_SIZE = 1;
-
-    private static final ExecutorService NACOS_UPDATE_CONFIG = new ThreadPoolExecutor(POOL_SIZE, POOL_SIZE, 0L, TimeUnit.MILLISECONDS,
-            new LinkedBlockingQueue<>(), new DefaultThreadFactory("limiter_nacos_listener"));
 
     private Config config;
-
-    private static int TIME_OUT = 3;
 
 
     public ApolloConfigManager(Config config) {
