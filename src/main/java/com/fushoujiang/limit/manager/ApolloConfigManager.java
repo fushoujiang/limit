@@ -54,7 +54,7 @@ public class ApolloConfigManager extends AbsConfigManager {
                 RateLimiterConfig rateLimiterConfig = JSON.parseObject(change.getNewValue(), RateLimiterConfig.class);
                 String[] split = key.split("_");
                 rateLimiterConfig.setProject(split[0]);
-                rateLimiterConfig.setProject(split[1]);
+                rateLimiterConfig.setGroup(split[1]);
                 apolloConfigManager.innerGetRateLimiterConfig(rateLimiterConfig, true);
             }
 
