@@ -28,7 +28,7 @@ public abstract class AbsConfigManager implements ConfigManager{
 
 
 
-    private String buildKey(RateLimiterConfig rateLimiterConfig){
+    public String buildKey(RateLimiterConfig rateLimiterConfig){
         return rateLimiterConfig.getProject()+"_"+rateLimiterConfig.getGroup();
     }
     private void checkRemoteLimiterConfig(RateLimiterConfig local, RateLimiterConfig remote) {

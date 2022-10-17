@@ -7,7 +7,6 @@ import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.model.ConfigChange;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.fushoujiang.limit.entity.RateLimiterConfig;
-import io.netty.util.concurrent.DefaultThreadFactory;
 import jdk.internal.joptsimple.internal.Strings;
 
 
@@ -25,7 +24,7 @@ public class ApolloConfigManager extends AbsConfigManager {
 
     @Override
     public RateLimiterConfig loadRateLimiterConfigFromDateSource(RateLimiterConfig rateLimiterConfig) {
-        final String key = rateLimiterConfig.getProject() + "_" + rateLimiterConfig.getGroup();
+        final String key = buildKey(rateLimiterConfig);
         String configProperty = config.getProperty(key, "");
         if (Strings.isNullOrEmpty(configProperty)) return rateLimiterConfig;
         return JSON.parseObject(configProperty, RateLimiterConfig.class);
